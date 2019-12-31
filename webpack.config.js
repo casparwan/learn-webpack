@@ -12,6 +12,8 @@ var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const CopyPlugin = require('copy-webpack-plugin');
 
+const MyPlugin = require('./my-plugin');
+
 
 const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
@@ -71,11 +73,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'src'),
-        use: {
+        use: [{
           // loader: 'babel-loader',
           loader: 'happypack/loader?id=js',
 
-        },
+        },],
       },
       {
         test: /\.css$/,
@@ -166,7 +168,7 @@ module.exports = {
           options: {
             cacheDirectory: true,
           },
-        },
+        }
       ],
     }),
     // new BundleAnalyzerPlugin(),
@@ -174,6 +176,7 @@ module.exports = {
       context: path.resolve(__dirname),
       manifest: require('./vendors-manifest.json'),
     }),
+    new MyPlugin(),
   ],
    
 };
