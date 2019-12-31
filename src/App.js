@@ -4,7 +4,7 @@ import Sidebar from '@/components/menu'
 import Loadable from 'react-loadable';
 import Lazy from '@/components/Lazy';
 
-const Home = Lazy(()=>import(/* webpackChunkName: 'home' */ '@/pages/home'));
+const Home = lazy(()=>import(/* webpackChunkName: 'home' */ '@/pages/home'));
 //const About = lazy(()=>import(/* webpackChunkName: 'about' */ '@/pages/about'));
 const About = Lazy(()=>import(/* webpackChunkName: 'about' */ '@/pages/about'))
 const Hook = lazy(()=>import(/* webpackChunkName: 'hook' */ '@/pages/hook'))
@@ -43,7 +43,6 @@ class App extends React.Component {
               <Route path="/about" component={About} />
             </div>
           </Router>
-        
       );
     }
   }
